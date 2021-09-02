@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_restful import Resource, Api, reqparse
 import requests
 #import requests as reqszz
 
@@ -110,6 +109,10 @@ mkad = [[1,37.842762, 55.774558], [2, 37.842789, 55.76522], [3,37.842627,55.7557
 [108,37.841576,55.785017]
   ]
 
+@app.route('/')
+def home():
+    return 'Success'
+  
 @app.route('/distanceCalculator', methods=['GET'])
 def geo():
     parser = reqparse.RequestParser()  # initialize
@@ -150,8 +153,8 @@ def coordValidate(lat, long):
     return retorno
 
 #def distanceCalculator(lat, long):
-    def distance(p1,p2):
-        R = 6378.0
+ def distance(p1,p2):
+     R = 6378.0
 
         lat1 = radians(p1[0])
         lon1 = radians(p1[1])
@@ -162,7 +165,7 @@ def coordValidate(lat, long):
         dlat = lat2 - lat1
 
         a = sin(dlat / 2)*2 + cos(lat1) * cos(lat2) * sin(dlon / 2)*2 
-    c = 2 * atan2(sqrt(a), sqrt(1 - a)) 
+        c = 2 * atan2(sqrt(a), sqrt(1 - a)) 
 
         distance = R * c
 
